@@ -15,7 +15,7 @@ export default function Index() {
         <div className="flex items-start space-x-4">
           {actionData && actionData.response ? (
             <div className="mt-6 p-2 border-yellow-200 bg-yellow-50">
-              <p className="text-lg leading-8 text-yellow-500">
+              <p className="text-sm leading-8 text-yellow-500">
                 {actionData.response}
               </p>
             </div>
