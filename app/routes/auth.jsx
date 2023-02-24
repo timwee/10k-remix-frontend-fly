@@ -1,15 +1,9 @@
-import { useLoaderData, Form, useActionData, useCatch } from "@remix-run/react";
-import { redirect } from "@remix-run/node";
+import { Form, useActionData } from "@remix-run/react";
+import { redirect, json } from "@remix-run/node";
 import { getIsLoggedIn, login } from "~/data/auth.server";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 
 export default function AuthPage() {
-  // const isLoggedIn = useLoaderData();
-
-  // if (isLoggedIn) {
-  //   return redirect("/");
-  // }
-
   const actionData = useActionData();
   console.log(actionData);
 
@@ -64,10 +58,14 @@ export default function AuthPage() {
   );
 }
 
-// export async function loader({ request }) {
-//   const isLoggedIn = getIsLoggedIn(request);
-//   return isLoggedIn;
-// }
+export async function loader({ request }) {
+  const isLoggedIn = await getIsLoggedIn(request);
+  console.log(isLoggedIn);
+  if (isLoggedIn) {
+    return redirect("/");
+  }
+  return json({});
+}
 
 export async function action({ request }) {
   const formData = await request.formData();

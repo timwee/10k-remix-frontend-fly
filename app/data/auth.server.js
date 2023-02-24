@@ -30,7 +30,6 @@ export async function getIsLoggedIn(request) {
   );
 
   const loggedIn = session.get("loggedIn");
-
   if (!loggedIn) {
     return false;
   }
