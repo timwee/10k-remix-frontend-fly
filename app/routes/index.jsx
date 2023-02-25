@@ -1,4 +1,4 @@
-import { useActionData } from "@remix-run/react";
+import { useActionData, useNavigation } from "@remix-run/react";
 import { redirect, json } from "@remix-run/node";
 import { getIsLoggedIn } from "~/data/auth.server";
 import QuestionForm from "~/components/QuestionForm";
@@ -6,6 +6,9 @@ import { callAPI } from "~/data/api.server";
 
 export default function Index() {
   const actionData = useActionData();
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state !== "idle";
 
   return (
     <div className="bg-white py-24 sm:py-32">
@@ -14,7 +17,7 @@ export default function Index() {
           <QuestionForm />
         </div>
         <div className="flex items-start space-x-4">
-          {actionData && actionData.response ? (
+          {!isSubmitting && actionData && actionData.response ? (
             <div className="mt-6 p-2 border-yellow-200 bg-yellow-50">
               <p className="text-sm leading-8 text-yellow-500">
                 {actionData.response}
