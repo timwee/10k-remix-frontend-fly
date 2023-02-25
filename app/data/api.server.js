@@ -1,5 +1,5 @@
 export async function callAPI(question) {
-  let apiUrl = `https://10k-backend-fastapi.fly.dev/path/${encodeURI(
+  let apiUrl = `http://10k-backend-fastapi.internal:8080/path/${encodeURI(
     question
   )}`;
   let res = await fetch(apiUrl);
