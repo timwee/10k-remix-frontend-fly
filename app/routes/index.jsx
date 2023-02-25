@@ -41,6 +41,7 @@ export async function action({ request }) {
   const question = formData.get("question");
   console.log(question);
 
+  await new Promise((r) => setTimeout(r, 3000));
   return {
     response:
       "Google made changes to their fee structure, improved ad formats and delivery, and increased sales of Pixel devices. They also experienced growth in YouTube non-advertising and hardware revenues, as well as Google Cloud Platform and Google Workspace offerings.",

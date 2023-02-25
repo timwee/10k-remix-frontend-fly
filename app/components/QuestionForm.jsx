@@ -1,6 +1,9 @@
-import { Form } from "@remix-run/react";
+import { Form, useTransition as useNavigation } from "@remix-run/react";
 
 export default function QuestionForm() {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state !== "idle";
+
   return (
     <div className="min-w-0 flex-1">
       <Form method="post" id="query-form" className="relative">
@@ -33,10 +36,14 @@ export default function QuestionForm() {
           </div>
           <div className="flex-shrink-0">
             <button
+              disabled={isSubmitting}
               type="submit"
-              className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className={
+                "inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" +
+                (isSubmitting ? " bg-gray-300" : " bg-indigo-600 ")
+              }
             >
-              Submit
+              {isSubmitting ? "Processing..." : "Submit"}
             </button>
           </div>
         </div>
