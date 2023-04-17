@@ -1,7 +1,7 @@
 import { createCookieSessionStorage, redirect } from "@remix-run/node";
 
-const SESSION_SECRET = "secret"; //process.env.SESSION_SECRET;
-const PASSWORD = "pw"; // process.env.PASSWORD;
+const SESSION_SECRET = process.env.SESSION_SECRET;
+const PASSWORD = process.env.PASSWORD;
 
 const sessionStorage = createCookieSessionStorage({
   cookie: {
